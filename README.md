@@ -6,3 +6,4 @@ Exampe of use component:
 ```
     <input-minus-plus min=0 max=17 name='number'/>
 ```
+# input-minus-plus
