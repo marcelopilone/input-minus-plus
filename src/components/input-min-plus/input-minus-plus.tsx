@@ -13,19 +13,19 @@ export class InputMinPlus {
   
   @State() number: number = 0;
 
-  sumar(){
+  sum(){
     this.number = this.number + 1;
   }
 
-  restar(){
+  less(){
     this.number = this.number - 1;
   }
   render() {
     return (
       <Host>
-        <button id='less' onClick={()=>this.restar()}>-</button>
+        <button id='less' onClick={()=>this.less()}>-</button>
         <input id='number' value={this.number} min={this.min} max={this.max} name={this.name} />
-        <button id='sum' onClick={()=>this.sumar()}>+</button>
+        <button id='sum' onClick={()=>this.sum()}>+</button>
       </Host>
     );
   }
