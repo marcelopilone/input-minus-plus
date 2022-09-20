@@ -3,7 +3,7 @@ export declare class InputMinPlus {
   min: number;
   name: string;
   number: number;
-  sumar(): void;
-  restar(): void;
+  sum(): void;
+  less(): void;
   render(): any;
 }
