@@ -1,30 +1,63 @@
-import { r as registerInstance, h, e as Host, g as getElement } from './index-f6444016.js';
+import { r as registerInstance, e as createEvent, h, f as Host, g as getElement } from './index-8af35695.js';
 
-const inputMinusPlusCss = ":host{display:inline-block}";
+const inputMinusPlusCss = ":host{display:inline-flex;flex-wrap:nowrap;height:100%;border:1px solid silver;border-radius:1em;overflow:hidden}input,button{height:100%;padding:1em;margin:0;border:none;text-align:center}button{min-width:1.5em}input{width:3em}";
 
 const InputMinusPlus = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
+    this.inpluschange = createEvent(this, "inpluschange", 7);
+    this.value = null;
     this.number = 0;
   }
-  componentDidRender() {
-    this._input = document.createElement('input');
-    for (var att, i = 0, atts = this.el.attributes, n = atts.length; i < n; i++) {
-      att = atts[i];
-      this._input[att.nodeName] = att.nodeValue;
-      document.getElementById('number').setAttribute(att.nodeName, att.nodeValue);
+  watchPropHandler(newValue, oldValue) {
+    if (newValue != oldValue) {
+      this.value = this.number;
     }
+  }
+  watchStateHandler(newValue, oldValue) {
+    if (newValue != oldValue) {
+      this.number = this.value;
+    }
+  }
+  handleClick() {
+    // whenever a click event occurs on
+    // the component, update `isOpen`,
+    // triggering the rerender
+    console.info("aca esta la garompa esta caputrada");
+  }
+  componentWillLoad() {
+    this.number = this.value * 1;
+    if (this.el.attributes.length) {
+      for (var i = 0; i < this.el.attributes.length; i++) {
+        let att = this.el.attributes[i];
+        if (!att.hasOwnProperty("nodeName"))
+          continue;
+        if (att.nodeName == 'id')
+          continue;
+        this._input[att.nodeName] = att.nodeValue;
+      }
+    }
+    // this.marceChange.call()
   }
   sum() {
     this.number = this.number + 1;
+    this.inpluschange.emit(this._input);
   }
   less() {
     this.number = this.number - 1;
+    this.inpluschange.emit(this._input);
+  }
+  onInputChange(ev) {
+    this.number = ev.target.value * 1;
   }
   render() {
-    return (h(Host, null, h("button", { id: 'less', onClick: () => this.less() }, "-"), h("input", { id: 'number', value: this.number }), h("button", { id: 'sum', onClick: () => this.sum() }, "+")));
+    return (h(Host, null, h("button", { onClick: () => this.less() }, "-"), h("input", { value: this.number, onChange: (ev) => this.onInputChange(ev) }), h("button", { onClick: () => this.sum() }, "+")));
   }
   get el() { return getElement(this); }
+  static get watchers() { return {
+    "number": ["watchPropHandler"],
+    "value": ["watchStateHandler"]
+  }; }
 };
 InputMinusPlus.style = inputMinusPlusCss;
 

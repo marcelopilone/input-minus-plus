@@ -7,8 +7,17 @@
 
     <script type="module" src="/build/input-min-plus.esm.js"></script>
     <script nomodule src="/build/input-min-plus.js"></script>
+    <script type="text/javascript">
+      function prueba(){
+        alert('dasd')
+      }
+    </script>
   </head>
   <body>
-    <input-minus-plus id="numberMinusPlus" name='jaja' min=0 max=17 />
+    <input-minus-plus  name='jaja' min=0 max=17 id='marce' oninpluschange='prueba()' value="3"/>
   </body>
+
+  <script>
+    document.getElementById("marce").addEventListener("inpluschange", () => console.info("me re clickeo mal"));
+  </script>
 </html>

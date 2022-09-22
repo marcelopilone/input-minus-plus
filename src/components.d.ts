@@ -7,7 +7,12 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface InputMinusPlus {
+        "value": any;
     }
+}
+export interface InputMinusPlusCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLInputMinusPlusElement;
 }
 declare global {
     interface HTMLInputMinusPlusElement extends Components.InputMinusPlus, HTMLStencilElement {
@@ -22,6 +27,8 @@ declare global {
 }
 declare namespace LocalJSX {
     interface InputMinusPlus {
+        "onInpluschange"?: (event: InputMinusPlusCustomEvent<HTMLInputElement>) => void;
+        "value"?: any;
     }
     interface IntrinsicElements {
         "input-minus-plus": InputMinusPlus;
