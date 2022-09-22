@@ -7,9 +7,6 @@
 import { HTMLStencilElement, JSXBase } from "./stencil-public-runtime";
 export namespace Components {
     interface InputMinusPlus {
-        "max": number;
-        "min": number;
-        "name": string;
     }
 }
 declare global {
@@ -25,9 +22,6 @@ declare global {
 }
 declare namespace LocalJSX {
     interface InputMinusPlus {
-        "max"?: number;
-        "min"?: number;
-        "name"?: string;
     }
     interface IntrinsicElements {
         "input-minus-plus": InputMinusPlus;

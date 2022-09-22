@@ -1,5 +1,5 @@
 /* InputMinPlus custom elements */
-export { InputMinPlus as InputMinusPlus } from '../types/components/input-min-plus/input-minus-plus';
+export { InputMinusPlus as InputMinusPlus } from '../types/components/input-min-plus/input-minus-plus';
 
 /**
  * Used to manually set the base path where assets can be found.

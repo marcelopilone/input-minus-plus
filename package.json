@@ -1,7 +1,7 @@
 {
-  "name": "@input-minus-plus/input-min-plus",
+  "name": "input-min-plus",
   "version": "0.0.1",
-  "description": "Stencil Component Starter",
+  "description": "Input to increase or decrease with limit with max and min in params",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "es2015": "dist/esm/index.mjs",
@@ -12,7 +12,7 @@
   "unpkg": "dist/input-min-plus/input-min-plus.esm.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ionic-team/stencil-component-starter.git"
+    "url": "https://github.com/marcelopilone/input-minus-plus"
   },
   "files": [
     "dist/",
