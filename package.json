@@ -1,5 +1,5 @@
 {
-  "name": "input-min-plus",
+  "name": "@input-minus-plus/input-min-plus",
   "version": "0.0.1",
   "description": "Stencil Component Starter",
   "main": "dist/index.cjs.js",
@@ -12,7 +12,7 @@
   "unpkg": "dist/input-min-plus/input-min-plus.esm.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ionic-team/stencil-component-starter.git"
+    "url": "git+https://github.com/ionic-team/stencil-component-starter.git"
   },
   "files": [
     "dist/",
@@ -34,5 +34,10 @@
     "jest-cli": "^27.4.5",
     "puppeteer": "^18.0.2"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ionic-team/stencil-component-starter/issues"
+  },
+  "homepage": "https://github.com/ionic-team/stencil-component-starter#readme",
+  "author": "mptarantula"
 }
