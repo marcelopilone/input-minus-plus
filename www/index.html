@@ -1,16 +1,7 @@
-<!doctype html><html dir="ltr" lang="en"><head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"> <title>Stencil Component Starter</title> <script type="module" src="/build/input-min-plus.esm.js" data-stencil></script> <script nomodule="" src="/build/input-min-plus.js" data-stencil></script> <script type="text/javascript">
+<!doctype html><html dir="ltr" lang="en"><head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"> <title>Stencil Component Starter</title> <link rel="modulepreload" href="/build/p-9c12cd9d.js"><script type="module" src="/build/p-9c12cd9d.js" data-stencil data-resources-url="/build/" data-stencil-namespace="input-min-plus"></script> <script nomodule="" src="/build/input-min-plus.js" data-stencil></script> <script type="text/javascript">
       function prueba(){
         alert('dasd')
       }
     </script> </head> <body> <input-minus-plus name="jaja" min="0" max="17" id="marce" oninpluschange="prueba()" value="3"> <script>
     document.getElementById("marce").addEventListener("inpluschange", () => console.info("me re clickeo mal"));
-  </script> </input-minus-plus><script>
-if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-  // auto-unregister service worker during dev mode
-  navigator.serviceWorker.getRegistration().then(function(registration) {
-  if (registration) {
-    registration.unregister().then(function() { location.reload(true) });
-  }
-  });
-}
-</script></body></html>
+  </script> </input-minus-plus></body></html>

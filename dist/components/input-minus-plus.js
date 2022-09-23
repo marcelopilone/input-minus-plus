@@ -1,10 +1,12 @@
-import { r as registerInstance, e as createEvent, h, f as Host, g as getElement } from './index-8af35695.js';
+import { proxyCustomElement, HTMLElement, createEvent, h, Host } from '@stencil/core/internal/client';
 
 const inputMinusPlusCss = ":host{display:inline-flex;flex-wrap:nowrap;height:100%;border:1px solid silver;border-radius:1em;overflow:hidden}input,button{height:100%;padding:1em;margin:0;border:none;text-align:center}button{min-width:1.5em}input{width:3em}";
 
-const InputMinusPlus = class {
-  constructor(hostRef) {
-    registerInstance(this, hostRef);
+const InputMinusPlus$1 = /*@__PURE__*/ proxyCustomElement(class extends HTMLElement {
+  constructor() {
+    super();
+    this.__registerHost();
+    this.__attachShadow();
     this.inpluschange = createEvent(this, "inpluschange", 7);
     this.value = null;
     this.number = 0;
@@ -53,12 +55,31 @@ const InputMinusPlus = class {
   render() {
     return (h(Host, null, h("button", { onClick: () => this.less() }, "-"), h("input", { value: this.number, onChange: (ev) => this.onInputChange(ev) }), h("button", { onClick: () => this.sum() }, "+")));
   }
-  get el() { return getElement(this); }
+  get el() { return this; }
   static get watchers() { return {
     "number": ["watchPropHandler"],
     "value": ["watchStateHandler"]
   }; }
-};
-InputMinusPlus.style = inputMinusPlusCss;
+  static get style() { return inputMinusPlusCss; }
+}, [1, "input-minus-plus", {
+    "value": [1544],
+    "number": [32]
+  }, [[2, "change", "handleClick"]]]);
+function defineCustomElement$1() {
+  if (typeof customElements === "undefined") {
+    return;
+  }
+  const components = ["input-minus-plus"];
+  components.forEach(tagName => { switch (tagName) {
+    case "input-minus-plus":
+      if (!customElements.get(tagName)) {
+        customElements.define(tagName, InputMinusPlus$1);
+      }
+      break;
+  } });
+}
 
-export { InputMinusPlus as input_minus_plus };
+const InputMinusPlus = InputMinusPlus$1;
+const defineCustomElement = defineCustomElement$1;
+
+export { InputMinusPlus, defineCustomElement };

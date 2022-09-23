@@ -7,11 +7,16 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default |
-| -------- | --------- | ----------- | -------- | ------- |
-| `max`    | `max`     |             | `number` | `null`  |
-| `min`    | `min`     |             | `number` | `null`  |
-| `name`   | `name`    |             | `string` | `''`    |
+| Property | Attribute | Description | Type  | Default |
+| -------- | --------- | ----------- | ----- | ------- |
+| `value`  | `value`   |             | `any` | `null`  |
+
+
+## Events
+
+| Event          | Description | Type                            |
+| -------------- | ----------- | ------------------------------- |
+| `inpluschange` |             | `CustomEvent<HTMLInputElement>` |
 
 
 ----------------------------------------------
