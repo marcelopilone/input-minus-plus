@@ -1,0 +1,25 @@
+:host {
+  display: inline-flex;
+  flex-wrap: nowrap;
+
+  height: 100%;
+  border: 1px solid silver;
+  border-radius: 1em;
+  overflow: hidden;
+}
+
+
+input, button{
+  height: 100%;
+  margin: 0;
+  border: none;
+  text-align: center;
+}
+
+button{
+  min-width: 1.5em;
+}
+
+input{
+  width: 3em;
+}

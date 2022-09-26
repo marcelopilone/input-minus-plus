@@ -1,11 +1,15 @@
-import { r as registerInstance, e as createEvent, h, f as Host, g as getElement } from './index-8af35695.js';
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+const index = require('./index-04ec360a.js');
 
 const inputMinusPlusCss = ":host{display:inline-flex;flex-wrap:nowrap;height:100%;border:1px solid silver;border-radius:1em;overflow:hidden}input,button{height:100%;margin:0;border:none;text-align:center}button{min-width:1.5em}input{width:3em}";
 
 const InputMinusPlus = class {
   constructor(hostRef) {
-    registerInstance(this, hostRef);
-    this.inpluschange = createEvent(this, "inpluschange", 7);
+    index.registerInstance(this, hostRef);
+    this.inpluschange = index.createEvent(this, "inpluschange", 7);
     this.value = null;
     this.number = 0;
   }
@@ -51,9 +55,9 @@ const InputMinusPlus = class {
     this.number = ev.target.value * 1;
   }
   render() {
-    return (h(Host, null, h("button", { onClick: () => this.less() }, "-"), h("input", { value: this.number, onChange: (ev) => this.onInputChange(ev) }), h("button", { onClick: () => this.sum() }, "+")));
+    return (index.h(index.Host, null, index.h("button", { onClick: () => this.less() }, "-"), index.h("input", { value: this.number, onChange: (ev) => this.onInputChange(ev) }), index.h("button", { onClick: () => this.sum() }, "+")));
   }
-  get el() { return getElement(this); }
+  get el() { return index.getElement(this); }
   static get watchers() { return {
     "number": ["watchPropHandler"],
     "value": ["watchStateHandler"]
@@ -61,4 +65,4 @@ const InputMinusPlus = class {
 };
 InputMinusPlus.style = inputMinusPlusCss;
 
-export { InputMinusPlus as input_minus_plus };
+exports.input_minus_plus = InputMinusPlus;
