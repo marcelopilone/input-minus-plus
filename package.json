@@ -1,6 +1,6 @@
 {
   "name": "input-min-plus",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Input to increase or decrease with limit with max and min in params",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
