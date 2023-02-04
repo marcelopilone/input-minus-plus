@@ -1,9 +1,9 @@
 {
   "name": "input-min-plus",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Input to increase or decrease with limit with max and min in params",
   "main": "dist/index.cjs.js",
-  "module": "dist/index.js",
+  "module": "dist/components/index.js",
   "es2015": "dist/esm/index.mjs",
   "es2017": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",
@@ -26,7 +26,7 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@stencil/core": "^2.13.0"
+    "@stencil/core": "^3.0.0"
   },
   "devDependencies": {
     "@types/jest": "^27.0.3",

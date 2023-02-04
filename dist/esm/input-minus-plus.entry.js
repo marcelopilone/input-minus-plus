@@ -1,4 +1,4 @@
-import { r as registerInstance, c as createEvent, h, H as Host, g as getElement } from './index-29d70b93.js';
+import { r as registerInstance, c as createEvent, h, H as Host, g as getElement } from './index-e81a2ac2.js';
 
 const inputMinusPlusCss = ":host{display:inline-flex;flex-wrap:nowrap;height:100%;border:1px solid silver;border-radius:1em;overflow:hidden}input,button{height:100%;margin:0;border:none;text-align:center}button{min-width:1.5em}input{width:3em}";
 
@@ -62,3 +62,5 @@ const InputMinusPlus = class {
 InputMinusPlus.style = inputMinusPlusCss;
 
 export { InputMinusPlus as input_minus_plus };
+
+//# sourceMappingURL=input-minus-plus.entry.js.map

@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-04ec360a.js');
+const index = require('./index-7992157a.js');
 
 const inputMinusPlusCss = ":host{display:inline-flex;flex-wrap:nowrap;height:100%;border:1px solid silver;border-radius:1em;overflow:hidden}input,button{height:100%;margin:0;border:none;text-align:center}button{min-width:1.5em}input{width:3em}";
 
@@ -66,3 +66,5 @@ const InputMinusPlus = class {
 InputMinusPlus.style = inputMinusPlusCss;
 
 exports.input_minus_plus = InputMinusPlus;
+
+//# sourceMappingURL=input-minus-plus.cjs.entry.js.map
