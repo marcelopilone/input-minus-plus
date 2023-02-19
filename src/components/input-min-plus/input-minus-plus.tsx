@@ -1,4 +1,4 @@
-import { Component,Element, Host, h,  State, Prop,Event, EventEmitter, Watch, Listen } from '@stencil/core';
+import { Component,Element, Host, h,  State, Prop,Event, EventEmitter, Watch } from '@stencil/core';
 
 @Component({
   tag: 'input-minus-plus',
@@ -8,74 +8,77 @@ import { Component,Element, Host, h,  State, Prop,Event, EventEmitter, Watch, Li
 export class InputMinusPlus {
 
   @Prop({mutable:true, reflect: true}) value? = null; 
-  @Prop() min?: number; 
-  @Prop() max?: number; 
+  @Prop() min?: number = -Infinity; 
+  @Prop() max?: number = Infinity; 
+  @Prop() step?: number = 1; 
   @Prop() name?: string; 
+  @Prop() required?: boolean = false; 
+  
+  @State() number: number = 0;
+  @State() disableMin: boolean = false;
+  @State() disableMax: boolean = false;
+  
 
   @Event() inpluschange:  EventEmitter<HTMLInputElement>
 
 
   @Watch('number')
-  watchPropHandler(newValue: boolean, oldValue: boolean) {
+  watchPropHandler(newValue: number, oldValue: number) {
     if ( newValue != oldValue) {
-      this.value = this.number;
-    }
-  }
-
-  @Watch('value')
-  watchStateHandler(newValue: boolean, oldValue: boolean) {
-    if ( newValue != oldValue) {
-      this.number = this.value;
+          this.checkDisabled()
+          this.value = newValue;
     }
   }
 
   
-  @State() number: number = 0;
+
 
   @Element() el: HTMLElement;
   _input: HTMLInputElement;
 
 
-  @Listen('change', { capture: true })
-  handleClick() {
-      // whenever a click event occurs on
-      // the component, update `isOpen`,
-      // triggering the rerender
-      console.info("aca esta la garompa esta caputrada")
-  }
-
 
   componentWillLoad(){
-
-    this.number = this.value * 1
-
-    if (  this.el.attributes.length ) {
-
-      for (var i = 0; i < this.el.attributes.length; i++){
-        let att = this.el.attributes[i];
-        if( !att.hasOwnProperty("nodeName" ) ) continue;
-        if( att.nodeName == 'id' ) continue;
-
-        this._input[att.nodeName] = att.nodeValue;
-      }
-    }
-
-   // this.marceChange.call()
+    this.changeNumber( this.value * 1)
   }
 
   sum(){
-    this.number = this.number + 1;
-    this.inpluschange.emit(this._input)
+    const newNumber = this.number + this.step;
+    if ( newNumber <= this.max) {
+      this.number = newNumber
+      this.inpluschange.emit(this._input)
+    }
   }
 
   less(){
-    this.number = this.number - 1;
-    this.inpluschange.emit(this._input)
+    const newNumber = this.number - this.step;
+    if ( newNumber >= this.min) {
+      this.number = newNumber
+      this.inpluschange.emit(this._input)
+    }
+  }
+
+  checkDisabled() {
+    this.disableMin = Boolean( this.number == this.min)
+    this.disableMax = Boolean( this.number == this.max)
+  }
+
+  changeNumber(newNumber): true {
+    if ( newNumber < this.min) {
+      this.number = this.min
+    }
+
+    if ( newNumber > this.max) {
+      this.number = this.max
+    }
+
+    return true;
   }
 
 
   onInputChange(ev){
-    this.number = ev.target.value *1;
+    this.changeNumber( ev.target.value * 1)
+    this.checkDisabled()
   } 
 
 
@@ -83,9 +86,9 @@ export class InputMinusPlus {
   render() {
     return (
       <Host>
-        <button onClick={()=>this.less()}>-</button>
-        <input type="number" min={this.min}  max={this.max} name={this.name} value={this.number} onChange={(ev) => this.onInputChange(ev)}/>
-        <button onClick={()=>this.sum()}>+</button>
+        <button onClick={()=>this.less()} disabled={this.disableMin}>-</button>
+        <input type="text" name={this.name} value={this.number} onChange={(ev) => this.onInputChange(ev)} required={this.required} />
+        <button onClick={()=>this.sum()} disabled={this.disableMax}>+</button>
       </Host>
     );
   }

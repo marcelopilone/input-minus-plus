@@ -2,51 +2,57 @@ import { Host, h } from '@stencil/core';
 export class InputMinusPlus {
   constructor() {
     this.value = null;
+    this.min = -Infinity;
+    this.max = Infinity;
+    this.step = 1;
+    this.name = undefined;
+    this.required = false;
     this.number = 0;
+    this.disableMin = false;
+    this.disableMax = false;
   }
   watchPropHandler(newValue, oldValue) {
     if (newValue != oldValue) {
-      this.value = this.number;
+      this.checkDisabled();
+      this.value = newValue;
     }
-  }
-  watchStateHandler(newValue, oldValue) {
-    if (newValue != oldValue) {
-      this.number = this.value;
-    }
-  }
-  handleClick() {
-    // whenever a click event occurs on
-    // the component, update `isOpen`,
-    // triggering the rerender
-    console.info("aca esta la garompa esta caputrada");
   }
   componentWillLoad() {
-    this.number = this.value * 1;
-    if (this.el.attributes.length) {
-      for (var i = 0; i < this.el.attributes.length; i++) {
-        let att = this.el.attributes[i];
-        if (!att.hasOwnProperty("nodeName"))
-          continue;
-        if (att.nodeName == 'id')
-          continue;
-        this._input[att.nodeName] = att.nodeValue;
-      }
-    }
-    // this.marceChange.call()
+    this.changeNumber(this.value * 1);
   }
   sum() {
-    this.number = this.number + 1;
-    this.inpluschange.emit(this._input);
+    const newNumber = this.number + this.step;
+    if (newNumber <= this.max) {
+      this.number = newNumber;
+      this.inpluschange.emit(this._input);
+    }
   }
   less() {
-    this.number = this.number - 1;
-    this.inpluschange.emit(this._input);
+    const newNumber = this.number - this.step;
+    if (newNumber >= this.min) {
+      this.number = newNumber;
+      this.inpluschange.emit(this._input);
+    }
+  }
+  checkDisabled() {
+    this.disableMin = Boolean(this.number == this.min);
+    this.disableMax = Boolean(this.number == this.max);
+  }
+  changeNumber(newNumber) {
+    if (newNumber < this.min) {
+      this.number = this.min;
+    }
+    if (newNumber > this.max) {
+      this.number = this.max;
+    }
+    return true;
   }
   onInputChange(ev) {
-    this.number = ev.target.value * 1;
+    this.changeNumber(ev.target.value * 1);
+    this.checkDisabled();
   }
   render() {
-    return (h(Host, null, h("button", { onClick: () => this.less() }, "-"), h("input", { value: this.number, onChange: (ev) => this.onInputChange(ev) }), h("button", { onClick: () => this.sum() }, "+")));
+    return (h(Host, null, h("button", { onClick: () => this.less(), disabled: this.disableMin }, "-"), h("input", { type: "text", name: this.name, value: this.number, onChange: (ev) => this.onInputChange(ev), required: this.required }), h("button", { onClick: () => this.sum(), disabled: this.disableMax }, "+")));
   }
   static get is() { return "input-minus-plus"; }
   static get encapsulation() { return "shadow"; }
@@ -71,7 +77,7 @@ export class InputMinusPlus {
           "references": {}
         },
         "required": false,
-        "optional": false,
+        "optional": true,
         "docs": {
           "tags": [],
           "text": ""
@@ -79,12 +85,103 @@ export class InputMinusPlus {
         "attribute": "value",
         "reflect": true,
         "defaultValue": "null"
+      },
+      "min": {
+        "type": "number",
+        "mutable": false,
+        "complexType": {
+          "original": "number",
+          "resolved": "number",
+          "references": {}
+        },
+        "required": false,
+        "optional": true,
+        "docs": {
+          "tags": [],
+          "text": ""
+        },
+        "attribute": "min",
+        "reflect": false,
+        "defaultValue": "-Infinity"
+      },
+      "max": {
+        "type": "number",
+        "mutable": false,
+        "complexType": {
+          "original": "number",
+          "resolved": "number",
+          "references": {}
+        },
+        "required": false,
+        "optional": true,
+        "docs": {
+          "tags": [],
+          "text": ""
+        },
+        "attribute": "max",
+        "reflect": false,
+        "defaultValue": "Infinity"
+      },
+      "step": {
+        "type": "number",
+        "mutable": false,
+        "complexType": {
+          "original": "number",
+          "resolved": "number",
+          "references": {}
+        },
+        "required": false,
+        "optional": true,
+        "docs": {
+          "tags": [],
+          "text": ""
+        },
+        "attribute": "step",
+        "reflect": false,
+        "defaultValue": "1"
+      },
+      "name": {
+        "type": "string",
+        "mutable": false,
+        "complexType": {
+          "original": "string",
+          "resolved": "string",
+          "references": {}
+        },
+        "required": false,
+        "optional": true,
+        "docs": {
+          "tags": [],
+          "text": ""
+        },
+        "attribute": "name",
+        "reflect": false
+      },
+      "required": {
+        "type": "boolean",
+        "mutable": false,
+        "complexType": {
+          "original": "boolean",
+          "resolved": "boolean",
+          "references": {}
+        },
+        "required": false,
+        "optional": true,
+        "docs": {
+          "tags": [],
+          "text": ""
+        },
+        "attribute": "required",
+        "reflect": false,
+        "defaultValue": "false"
       }
     };
   }
   static get states() {
     return {
-      "number": {}
+      "number": {},
+      "disableMin": {},
+      "disableMax": {}
     };
   }
   static get events() {
@@ -114,18 +211,6 @@ export class InputMinusPlus {
     return [{
         "propName": "number",
         "methodName": "watchPropHandler"
-      }, {
-        "propName": "value",
-        "methodName": "watchStateHandler"
-      }];
-  }
-  static get listeners() {
-    return [{
-        "name": "change",
-        "method": "handleClick",
-        "target": undefined,
-        "capture": true,
-        "passive": false
       }];
   }
 }

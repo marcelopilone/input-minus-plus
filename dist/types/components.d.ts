@@ -7,7 +7,12 @@
 import { HTMLStencilElement, JSXBase } from "./stencil-public-runtime";
 export namespace Components {
     interface InputMinusPlus {
-        "value": any;
+        "max"?: number;
+        "min"?: number;
+        "name"?: string;
+        "required"?: boolean;
+        "step"?: number;
+        "value"?: any;
     }
 }
 export interface InputMinusPlusCustomEvent<T> extends CustomEvent<T> {
@@ -27,7 +32,12 @@ declare global {
 }
 declare namespace LocalJSX {
     interface InputMinusPlus {
+        "max"?: number;
+        "min"?: number;
+        "name"?: string;
         "onInpluschange"?: (event: InputMinusPlusCustomEvent<HTMLInputElement>) => void;
+        "required"?: boolean;
+        "step"?: number;
         "value"?: any;
     }
     interface IntrinsicElements {

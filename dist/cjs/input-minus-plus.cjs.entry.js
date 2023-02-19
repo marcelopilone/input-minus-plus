@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-7992157a.js');
+const index = require('./index-8dd2dca2.js');
 
 const inputMinusPlusCss = ":host{display:inline-flex;flex-wrap:nowrap;height:100%;border:1px solid silver;border-radius:1em;overflow:hidden}input,button{height:100%;margin:0;border:none;text-align:center}button{min-width:1.5em}input{width:3em}";
 
@@ -11,56 +11,61 @@ const InputMinusPlus = class {
     index.registerInstance(this, hostRef);
     this.inpluschange = index.createEvent(this, "inpluschange", 7);
     this.value = null;
+    this.min = -Infinity;
+    this.max = Infinity;
+    this.step = 1;
+    this.name = undefined;
+    this.required = false;
     this.number = 0;
+    this.disableMin = false;
+    this.disableMax = false;
   }
   watchPropHandler(newValue, oldValue) {
     if (newValue != oldValue) {
-      this.value = this.number;
+      this.checkDisabled();
+      this.value = newValue;
     }
-  }
-  watchStateHandler(newValue, oldValue) {
-    if (newValue != oldValue) {
-      this.number = this.value;
-    }
-  }
-  handleClick() {
-    // whenever a click event occurs on
-    // the component, update `isOpen`,
-    // triggering the rerender
-    console.info("aca esta la garompa esta caputrada");
   }
   componentWillLoad() {
-    this.number = this.value * 1;
-    if (this.el.attributes.length) {
-      for (var i = 0; i < this.el.attributes.length; i++) {
-        let att = this.el.attributes[i];
-        if (!att.hasOwnProperty("nodeName"))
-          continue;
-        if (att.nodeName == 'id')
-          continue;
-        this._input[att.nodeName] = att.nodeValue;
-      }
-    }
-    // this.marceChange.call()
+    this.changeNumber(this.value * 1);
   }
   sum() {
-    this.number = this.number + 1;
-    this.inpluschange.emit(this._input);
+    const newNumber = this.number + this.step;
+    if (newNumber <= this.max) {
+      this.number = newNumber;
+      this.inpluschange.emit(this._input);
+    }
   }
   less() {
-    this.number = this.number - 1;
-    this.inpluschange.emit(this._input);
+    const newNumber = this.number - this.step;
+    if (newNumber >= this.min) {
+      this.number = newNumber;
+      this.inpluschange.emit(this._input);
+    }
+  }
+  checkDisabled() {
+    this.disableMin = Boolean(this.number == this.min);
+    this.disableMax = Boolean(this.number == this.max);
+  }
+  changeNumber(newNumber) {
+    if (newNumber < this.min) {
+      this.number = this.min;
+    }
+    if (newNumber > this.max) {
+      this.number = this.max;
+    }
+    return true;
   }
   onInputChange(ev) {
-    this.number = ev.target.value * 1;
+    this.changeNumber(ev.target.value * 1);
+    this.checkDisabled();
   }
   render() {
-    return (index.h(index.Host, null, index.h("button", { onClick: () => this.less() }, "-"), index.h("input", { value: this.number, onChange: (ev) => this.onInputChange(ev) }), index.h("button", { onClick: () => this.sum() }, "+")));
+    return (index.h(index.Host, null, index.h("button", { onClick: () => this.less(), disabled: this.disableMin }, "-"), index.h("input", { type: "text", name: this.name, value: this.number, onChange: (ev) => this.onInputChange(ev), required: this.required }), index.h("button", { onClick: () => this.sum(), disabled: this.disableMax }, "+")));
   }
   get el() { return index.getElement(this); }
   static get watchers() { return {
-    "number": ["watchPropHandler"],
-    "value": ["watchStateHandler"]
+    "number": ["watchPropHandler"]
   }; }
 };
 InputMinusPlus.style = inputMinusPlusCss;

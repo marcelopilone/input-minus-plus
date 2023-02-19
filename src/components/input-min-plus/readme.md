@@ -7,9 +7,14 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type  | Default |
-| -------- | --------- | ----------- | ----- | ------- |
-| `value`  | `value`   |             | `any` | `null`  |
+| Property   | Attribute  | Description | Type      | Default     |
+| ---------- | ---------- | ----------- | --------- | ----------- |
+| `max`      | `max`      |             | `number`  | `Infinity`  |
+| `min`      | `min`      |             | `number`  | `-Infinity` |
+| `name`     | `name`     |             | `string`  | `undefined` |
+| `required` | `required` |             | `boolean` | `false`     |
+| `step`     | `step`     |             | `number`  | `1`         |
+| `value`    | `value`    |             | `any`     | `null`      |
 
 
 ## Events

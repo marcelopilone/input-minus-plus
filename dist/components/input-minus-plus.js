@@ -9,62 +9,74 @@ const InputMinusPlus$1 = /*@__PURE__*/ proxyCustomElement(class extends HTMLElem
     this.__attachShadow();
     this.inpluschange = createEvent(this, "inpluschange", 7);
     this.value = null;
+    this.min = -Infinity;
+    this.max = Infinity;
+    this.step = 1;
+    this.name = undefined;
+    this.required = false;
     this.number = 0;
+    this.disableMin = false;
+    this.disableMax = false;
   }
   watchPropHandler(newValue, oldValue) {
     if (newValue != oldValue) {
-      this.value = this.number;
+      this.checkDisabled();
+      this.value = newValue;
     }
-  }
-  watchStateHandler(newValue, oldValue) {
-    if (newValue != oldValue) {
-      this.number = this.value;
-    }
-  }
-  handleClick() {
-    // whenever a click event occurs on
-    // the component, update `isOpen`,
-    // triggering the rerender
-    console.info("aca esta la garompa esta caputrada");
   }
   componentWillLoad() {
-    this.number = this.value * 1;
-    if (this.el.attributes.length) {
-      for (var i = 0; i < this.el.attributes.length; i++) {
-        let att = this.el.attributes[i];
-        if (!att.hasOwnProperty("nodeName"))
-          continue;
-        if (att.nodeName == 'id')
-          continue;
-        this._input[att.nodeName] = att.nodeValue;
-      }
-    }
-    // this.marceChange.call()
+    this.changeNumber(this.value * 1);
   }
   sum() {
-    this.number = this.number + 1;
-    this.inpluschange.emit(this._input);
+    const newNumber = this.number + this.step;
+    if (newNumber <= this.max) {
+      this.number = newNumber;
+      this.inpluschange.emit(this._input);
+    }
   }
   less() {
-    this.number = this.number - 1;
-    this.inpluschange.emit(this._input);
+    const newNumber = this.number - this.step;
+    if (newNumber >= this.min) {
+      this.number = newNumber;
+      this.inpluschange.emit(this._input);
+    }
+  }
+  checkDisabled() {
+    this.disableMin = Boolean(this.number == this.min);
+    this.disableMax = Boolean(this.number == this.max);
+  }
+  changeNumber(newNumber) {
+    if (newNumber < this.min) {
+      this.number = this.min;
+    }
+    if (newNumber > this.max) {
+      this.number = this.max;
+    }
+    return true;
   }
   onInputChange(ev) {
-    this.number = ev.target.value * 1;
+    this.changeNumber(ev.target.value * 1);
+    this.checkDisabled();
   }
   render() {
-    return (h(Host, null, h("button", { onClick: () => this.less() }, "-"), h("input", { value: this.number, onChange: (ev) => this.onInputChange(ev) }), h("button", { onClick: () => this.sum() }, "+")));
+    return (h(Host, null, h("button", { onClick: () => this.less(), disabled: this.disableMin }, "-"), h("input", { type: "text", name: this.name, value: this.number, onChange: (ev) => this.onInputChange(ev), required: this.required }), h("button", { onClick: () => this.sum(), disabled: this.disableMax }, "+")));
   }
   get el() { return this; }
   static get watchers() { return {
-    "number": ["watchPropHandler"],
-    "value": ["watchStateHandler"]
+    "number": ["watchPropHandler"]
   }; }
   static get style() { return inputMinusPlusCss; }
 }, [1, "input-minus-plus", {
     "value": [1544],
-    "number": [32]
-  }, [[2, "change", "handleClick"]]]);
+    "min": [2],
+    "max": [2],
+    "step": [2],
+    "name": [1],
+    "required": [4],
+    "number": [32],
+    "disableMin": [32],
+    "disableMax": [32]
+  }]);
 function defineCustomElement$1() {
   if (typeof customElements === "undefined") {
     return;

@@ -1,2 +1,2 @@
-import{p as e,b as n}from"./p-e7953fb4.js";export{s as setNonce}from"./p-e7953fb4.js";const a=()=>{const s=import.meta.url;const n={};if(s!==""){n.resourcesUrl=new URL(".",s).href}return e(n)};a().then((s=>n([["p-084a2aaa",[[1,"input-minus-plus",{value:[1544],number:[32]},[[2,"change","handleClick"]]]]]],s)));
+import{p as e,b as n}from"./p-2e69a45e.js";export{s as setNonce}from"./p-2e69a45e.js";const a=()=>{const s=import.meta.url;const n={};if(s!==""){n.resourcesUrl=new URL(".",s).href}return e(n)};a().then((e=>n([["p-f16d2fdc",[[1,"input-minus-plus",{value:[1544],min:[2],max:[2],step:[2],name:[1],required:[4],number:[32],disableMin:[32],disableMax:[32]}]]]],e)));
 //# sourceMappingURL=input-min-plus.esm.js.map
