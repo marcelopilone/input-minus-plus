@@ -7,6 +7,11 @@ import { Component,Element, Host, h,  State, Prop,Event, EventEmitter, Watch, Li
 })
 export class InputMinusPlus {
 
+  @Prop({mutable:true, reflect: true}) value? = null; 
+  @Prop() min?: number; 
+  @Prop() max?: number; 
+  @Prop() name?: string; 
+
   @Event() inpluschange:  EventEmitter<HTMLInputElement>
 
 
@@ -24,7 +29,7 @@ export class InputMinusPlus {
     }
   }
 
-  @Prop({mutable:true, reflect: true}) value = null; 
+  
   @State() number: number = 0;
 
   @Element() el: HTMLElement;
@@ -79,7 +84,7 @@ export class InputMinusPlus {
     return (
       <Host>
         <button onClick={()=>this.less()}>-</button>
-        <input value={this.number} onChange={(ev) => this.onInputChange(ev)}/>
+        <input type="number" min={this.min}  max={this.max} name={this.name} value={this.number} onChange={(ev) => this.onInputChange(ev)}/>
         <button onClick={()=>this.sum()}>+</button>
       </Host>
     );
