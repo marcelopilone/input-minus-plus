@@ -45,6 +45,9 @@ export class InputMinusPlus {
     if (newNumber > this.max) {
       this.number = this.max;
     }
+    if (!this.number && this.value) {
+      this.number = this.value;
+    }
     return true;
   }
   onInputChange(ev) {

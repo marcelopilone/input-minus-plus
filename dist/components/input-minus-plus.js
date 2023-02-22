@@ -52,6 +52,9 @@ const InputMinusPlus$1 = /*@__PURE__*/ proxyCustomElement(class extends HTMLElem
     if (newNumber > this.max) {
       this.number = this.max;
     }
+    if (!this.number && this.value) {
+      this.number = this.value;
+    }
     return true;
   }
   onInputChange(ev) {
