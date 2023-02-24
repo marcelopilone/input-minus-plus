@@ -32,3 +32,51 @@ is hosted in npm so you can add the following script in HTML
     .....
 </body>
 ```
+
+# CSS Customizations
+you can change CSS in your proyect doing something like this:
+
+```css
+  input-minus-plus{
+    --input-width: 100px;
+    --btn-width: 5em
+  }
+```
+
+## --input-width
+changes input width
+defaults to "auto
+
+## --btn-width
+changes left and right button width
+defaults to "auto
+
+
+# Events
+inpluschange
+
+on change throws "inpluschange" event
+
+you can listen to this event:
+
+```html
+  <input-minus-plus id="my-input" min=0 max=17 name='number'/>
+```
+
+```js
+  const myInput = document.getElementById("my-input");
+  myInput.addEventListener("inpluschange", (e) => console.log("inpluschange", e))
+```
+
+or you can use it this way:
+
+```js
+  myfunction(e){
+    console.log("my funcion called", e);
+  }
+```
+
+```html
+  <input-minus-plus name='number' onInpluschange="myfunction()"/>
+```
+
