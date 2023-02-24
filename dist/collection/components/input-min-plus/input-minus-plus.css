@@ -1,11 +1,12 @@
 :host {
   display: inline-flex;
   flex-wrap: nowrap;
-
   height: 100%;
   border: 1px solid silver;
   border-radius: 1em;
   overflow: hidden;
+  --input-width: auto;
+  --btn-width: auto
 }
 
 
@@ -18,8 +19,9 @@ input, button{
 
 button{
   min-width: 1.5em;
+  width: var(--btn-width);
 }
 
 input{
-  width: 3em;
+  width: var(--input-width);
 }

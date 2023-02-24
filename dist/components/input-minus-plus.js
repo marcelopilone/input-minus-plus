@@ -1,6 +1,6 @@
 import { proxyCustomElement, HTMLElement, createEvent, h, Host } from '@stencil/core/internal/client';
 
-const inputMinusPlusCss = ":host{display:inline-flex;flex-wrap:nowrap;height:100%;border:1px solid silver;border-radius:1em;overflow:hidden}input,button{height:100%;margin:0;border:none;text-align:center}button{min-width:1.5em}input{width:3em}";
+const inputMinusPlusCss = ":host{display:inline-flex;flex-wrap:nowrap;height:100%;border:1px solid silver;border-radius:1em;overflow:hidden;--input-width:auto;--btn-width:auto}input,button{height:100%;margin:0;border:none;text-align:center}button{min-width:1.5em;width:var(--btn-width)}input{width:var(--input-width)}";
 
 const InputMinusPlus$1 = /*@__PURE__*/ proxyCustomElement(class extends HTMLElement {
   constructor() {

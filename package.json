@@ -1,6 +1,6 @@
 {
   "name": "input-min-plus",
-  "version": "0.0.9",
+  "version": "1.0.0",
   "description": "Input to increase or decrease with limit with max and min in params",
   "main": "dist/index.cjs.js",
   "module": "dist/components/index.js",
@@ -36,8 +36,15 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ionic-team/stencil-component-starter/issues"
+    "url": "https://github.com/marcelopilone/input-minus-plus/issues"
   },
-  "homepage": "https://github.com/ionic-team/stencil-component-starter#readme",
-  "author": "mptarantula"
+  "homepage": "https://github.com/marcelopilone/input-minus-plus",
+  "author": "mptarantula",
+  "contributors": [
+    {
+      "name" : "Alejandro Vilar",
+      "email" : "alevilar@gmail.com",
+      "url" : "https://github.com/alevilar"
+    }
+  ]   
 }
