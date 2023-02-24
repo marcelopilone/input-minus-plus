@@ -1,3 +1,11 @@
+Stenciljs component, equal to <input type="number" />, but with 2 buttons.
+Will show and input like this:
+
+![image](https://user-images.githubusercontent.com/222193/221187124-a581c27e-eab6-4b2a-a08e-bbdaf1ef9951.png)
+
+
+
+
 # input-minus-plus
 increase and decrease a input value
 you can use this web component very simple.
@@ -6,7 +14,6 @@ Exampe of use component:
 ```
     <input-minus-plus min=0 max=17 name='number'/>
 ```
-
 
 
 # How to install in stenciljs
@@ -32,6 +39,11 @@ is hosted in npm so you can add the following script in HTML
     .....
 </body>
 ```
+
+
+# Input property
+Like type="number", you can have min. max values
+
 
 # CSS Customizations
 you can change CSS in your proyect doing something like this:
